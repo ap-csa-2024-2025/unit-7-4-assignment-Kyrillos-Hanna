@@ -7,12 +7,33 @@ public class Main
   {
     Scanner sc = new Scanner(System.in);
     ArrayList<String> input = new ArrayList<String>();
+    ArrayList<String> input2 = new ArrayList<String>();
 
     String word = "";
+    String letter = "";
+    String inputString = "";
+    System.out.println("Please enter words, enter STOP to stop the loop.");
     while (!word.equals("STOP"))
     {
-      System.out.println("Implement me!");
+      word = sc.nextLine();
+      input.add(word);
     }
+    input.remove("STOP");
+    System.out.println("Enter the letter to search for");
+    letter = sc.nextLine();
+    System.out.println("Search for " + letter + ": " + countSecondInitial(input, letter));
+    
+    word = "";
+    System.out.println("\nPlease enter words, enter STOP to stop the loop.");
+    while (!word.equals("STOP"))
+    {
+      word = sc.nextLine();
+      input2.add(word);
+    }
+    input2.remove("STOP");
+    System.out.println("Enter String to search for");
+    inputString = sc.nextLine();
+    System.out.println("searchSecond returns: " + searchSecond(input2, inputString));
   }
 
   /** Returns the number of Strings in the ArrayList that has the letter
@@ -22,7 +43,13 @@ public class Main
    */
   public static int countSecondInitial(ArrayList<String> arr, String letter)
   {
-    return 0;
+    int count = 0;
+    for (int i = 0; i < arr.size(); i++) {
+      if (arr.get(i).substring(1, 2).equals(letter)) {
+        count++;
+      } 
+    }
+    return count;
   }
 
   /** Returns the index of the second occurrence of target within the ArrayList
@@ -31,6 +58,15 @@ public class Main
    */
   public static int searchSecond(final ArrayList<String> arr, String target)
   {
+    int count = 0;
+    for (int i = 0; i < arr.size(); i++) {
+      if (arr.get(i).equals(target)) {
+        count++;
+        if (count >= 2) {
+          return i;
+        }
+      }
+    }
     return -1;
   }
 }
